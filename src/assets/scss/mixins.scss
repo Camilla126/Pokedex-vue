@@ -1,0 +1,30 @@
+@use "sass:map";
+@use "variables" as vars;
+
+@mixin respond-to($breakpoint) {
+  @media screen and (min-width: map.get(vars.$breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+@media (max-width: 576px) {
+  .pokemon-filters {
+    padding: 15px;
+
+    h3 {
+      font-size: 1.1rem;
+    }
+
+    .filters-grid {
+      gap: 12px;
+    }
+
+    .filter-actions {
+      flex-direction: column;
+
+      button {
+        max-width: none;
+        width: 100%;
+      }
+    }
+  }
+}

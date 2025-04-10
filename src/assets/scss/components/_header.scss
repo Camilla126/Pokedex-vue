@@ -1,0 +1,75 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary-color;
+  color: white;
+  padding: 20px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+
+  @include respond-to(lg) {
+    padding: 25px 0;
+  }
+
+  @include respond-to(sm) {
+    padding: 15px 0;
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+
+    @include respond-to(md) {
+      font-size: 2.5rem;
+    }
+
+    @include respond-to(sm) {
+      font-size: 1.8rem;
+    }
+
+    &::after {
+      content: "";
+      background-image: url("/src/assets/img/Pokebola-pokeball-png-0.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 40px;
+      height: 40px;
+      margin-left: 15px;
+      animation: spin 4s linear infinite;
+
+      @include respond-to(sm) {
+        width: 30px;
+        height: 30px;
+        margin-left: 10px;
+      }
+    }
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

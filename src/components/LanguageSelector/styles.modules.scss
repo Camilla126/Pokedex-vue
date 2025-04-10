@@ -1,0 +1,168 @@
+.language-selector {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+
+  .select-wrapper {
+    position: relative;
+    display: inline-block;
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      padding: 8px 36px 8px 36px;
+      border-radius: 6px;
+      background-color: white;
+      border: 1px solid #e0e0e0;
+      font-size: 14px;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-width: 140px;
+      font-weight: 500;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+      &:hover {
+        border-color: #ccc;
+        background-color: #fafafa;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: #3498db;
+        box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+      }
+    }
+
+    .select-icon {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: #666;
+    }
+
+    .flag-indicator {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 12px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      pointer-events: none;
+      border-radius: 2px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .flag-en {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 24'%3E%3Crect width='36' height='24' fill='%23ffffff'/%3E%3Cpath d='M0,0 h36 v2 h-36 z M0,4 h36 v2 h-36 z M0,8 h36 v2 h-36 z M0,12 h36 v2 h-36 z M0,16 h36 v2 h-36 z M0,20 h36 v2 h-36 z' fill='%23B22234'/%3E%3Crect width='14' height='14' fill='%233C3B6E'/%3E%3Cpath d='M1,1 h1 v1 h-1 z M3,1 h1 v1 h-1 z M5,1 h1 v1 h-1 z M7,1 h1 v1 h-1 z M9,1 h1 v1 h-1 z M11,1 h1 v1 h-1 z M2,2 h1 v1 h-1 z M4,2 h1 v1 h-1 z M6,2 h1 v1 h-1 z M8,2 h1 v1 h-1 z M10,2 h1 v1 h-1 z M12,2 h1 v1 h-1 z M1,3 h1 v1 h-1 z' fill='%23ffffff'/%3E%3C/svg%3E");
+    }
+
+    .flag-pt {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 24'%3E%3Crect width='36' height='24' fill='%2312AD2B'/%3E%3Cpath d='M18,2 34,12 18,22 2,12z' fill='%23FFDF00'/%3E%3Ccircle cx='18' cy='12' r='6' fill='%230747A6'/%3E%3C/svg%3E");
+    }
+
+    .flag-es {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 24'%3E%3Crect width='36' height='24' fill='%23AA151B'/%3E%3Crect y='6' width='36' height='12' fill='%23F1BF00'/%3E%3Cpath d='M9,12 v1 h1 v-1 z M8,13 v1 h3 v-1 z' fill='%23AA151B'/%3E%3C/svg%3E");
+    }
+  }
+}
+
+.dark-header {
+  .language-selector {
+    .select-wrapper {
+      select {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: white;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        &:focus {
+          border-color: rgba(255, 255, 255, 0.5);
+          box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+        }
+      }
+
+      .select-icon {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .flag-indicator {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .language-selector {
+    .select-wrapper {
+      display: flex;
+      margin-top: -10px;
+      select {
+        padding: 6px 12px 6px 18px;
+        font-size: 10px;
+        min-width: 90px;
+      }
+
+      .flag-indicator {
+        width: 10px;
+        height: 10px;
+        left: 5px;
+      }
+
+      .select-icon {
+        right: 8px;
+      }
+    }
+  }
+}
+@media (max-width: 417px) {
+  .language-selector {
+    .select-wrapper {
+      select {
+        padding: 3px 12px 3px 16px;
+        font-size: 11px;
+        min-width: 90px;
+      }
+
+      .flag-indicator {
+        width: 10px;
+        height: 10px;
+        left: 5px;
+      }
+
+      .select-icon {
+        right: 8px;
+      }
+    }
+  }
+}
+
+@keyframes flag-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+.language-selector {
+  .select-wrapper {
+    .flag-indicator {
+      animation: flag-fade 0.3s ease-out;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+    "app": {
+      "title": "Pokédex"
+    },
+    "pokemon": {
+      "search": "Search Pokémon",
+      "filters": {
+        "name": "Name",
+        "id": "ID",
+        "type": "Type",
+        "species": "Species",
+        "placeholders": {
+          "name": "Ex: Pikachu",
+          "id": "Ex: 25",
+          "species": "Ex: Bulbasaur"
+        },
+        "allTypes": "All types",
+        "reset": "Clear Filters"
+      },
+      "list": {
+        "loadMore": "Load more Pokémon",
+        "loading": "Loading...",
+        "noResults": "No Pokémon found with the selected filters."
+      },
+      "card": {
+        "stage": "Stage",
+        "preEvolution": "Pre-evolution",
+        "ability": "Ability",
+        "attacks": "Attacks",
+        "stats": {
+          "hp": "HP",
+          "attack": "Attack",
+          "defense": "Defense",
+          "special-attack": "Sp. Atk",
+          "special-defense": "Sp. Def",
+          "speed": "Speed"
+        }
+      },
+      "modal": {
+        "evolutions": "Evolutions",
+        "moves": "Moves",
+        "games": "Games",
+        "and": "And",
+        "moreMoves": "more moves"
+      }
+    },
+    "types": {
+      "normal": "Normal",
+      "fire": "Fire",
+      "water": "Water",
+      "electric": "Electric",
+      "grass": "Grass",
+      "ice": "Ice",
+      "fighting": "Fighting",
+      "poison": "Poison",
+      "ground": "Ground",
+      "flying": "Flying",
+      "psychic": "Psychic",
+      "bug": "Bug",
+      "rock": "Rock",
+      "ghost": "Ghost",
+      "dragon": "Dragon",
+      "dark": "Dark",
+      "steel": "Steel",
+      "fairy": "Fairy"
+    }
+  }

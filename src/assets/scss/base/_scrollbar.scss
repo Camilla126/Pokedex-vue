@@ -1,0 +1,17 @@
+.pokemon-card__inner {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+  }
+}

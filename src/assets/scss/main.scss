@@ -1,0 +1,13 @@
+@use "mixins" as *;
+@use "./variables" as *;
+@use "sass:color";
+
+@use "./base/base";
+
+@use "./base/scrollbar";
+
+@use "./components/header";
+
+@use "./components/pokemon-type";
+
+@use "./layouts/grid";

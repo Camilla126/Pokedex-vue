@@ -1,0 +1,67 @@
+{
+    "app": {
+      "title": "Pokédex"
+    },
+    "pokemon": {
+      "search": "Buscar Pokémon",
+      "filters": {
+        "name": "Nome",
+        "id": "ID",
+        "type": "Tipo",
+        "species": "Espécie",
+        "placeholders": {
+          "name": "Ex: Pikachu",
+          "id": "Ex: 25",
+          "species": "Ex: Bulbasaur"
+        },
+        "allTypes": "Todos os tipos",
+        "reset": "Limpar Filtros"
+      },
+      "list": {
+        "loadMore": "Carregar mais Pokémon",
+        "loading": "Carregando...",
+        "noResults": "Nenhum Pokémon encontrado com os filtros selecionados."
+      },
+      "card": {
+        "stage": "Estágio",
+        "preEvolution": "Pré-evolução",
+        "ability": "Habilidade",
+        "attacks": "Ataques",
+        "stats": {
+          "hp": "HP",
+          "attack": "Ataque",
+          "defense": "Defesa",
+          "special-attack": "Atk Esp",
+          "special-defense": "Def Esp",
+          "speed": "Velocidade"
+        }
+      },
+      "modal": {
+        "evolutions": "Evoluções",
+        "moves": "Movimentos",
+        "games": "Jogos",
+        "and": "E mais",
+        "moreMoves": "movimentos"
+      }
+    },
+    "types": {
+      "normal": "Normal",
+      "fire": "Fogo",
+      "water": "Água",
+      "electric": "Elétrico",
+      "grass": "Planta",
+      "ice": "Gelo",
+      "fighting": "Lutador",
+      "poison": "Venenoso",
+      "ground": "Terra",
+      "flying": "Voador",
+      "psychic": "Psíquico",
+      "bug": "Inseto",
+      "rock": "Pedra",
+      "ghost": "Fantasma",
+      "dragon": "Dragão",
+      "dark": "Sombrio",
+      "steel": "Metálico",
+      "fairy": "Fada"
+    }
+  }

@@ -1,0 +1,43 @@
+@use "../variables" as *;
+
+.pokemon-type {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+
+  .pokemon-card:active & {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+  }
+
+  @each $type, $color in $type-colors {
+    &--#{$type} {
+      background: $color;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(255, 255, 255, 0) 70%
+        );
+        opacity: 0.2;
+        z-index: 1;
+      }
+    }
+  }
+}

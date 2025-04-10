@@ -1,0 +1,55 @@
+@use "../../assets/scss/variables.scss" as *;
+@use "../../assets/scss/mixins.scss" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  .pokemon-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+
+    gap: 30px;
+  }
+  .load-more-container {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+
+    .load-more-button {
+      background-color: $primary-color;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: $border-radius;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: black;
+      }
+
+      &:disabled {
+        background-color: black;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .pokemon-list {
+    padding-bottom: 30px;
+    margin-top: 10px;
+  }
+  .no-results {
+    text-align: center;
+    padding: 40px 0;
+    font-size: 1.1rem;
+    color: black;
+    font-style: italic;
+  }
+}
