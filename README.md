@@ -24,11 +24,4 @@ A aplicação detecta o idioma do navegador do usuário automaticamente e permit
 
 ---
 
-## 🧪 Testes
 
-Testes automatizados foram implementados com **Vitest**, garantindo a estabilidade das funcionalidades principais da aplicação.
-
-Para rodar os testes:
-
-```bash
-npm run test
