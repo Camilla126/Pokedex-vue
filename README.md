@@ -1,6 +1,5 @@
 # 📘 Pokédex Vue
-
-Uma Pokédex moderna e responsiva desenvolvida com **Vue.js**, utilizando **Vuex** para gerenciamento de estado global, **Sass** para estilização elegante e organizada, e **Vitest** para garantir a confiabilidade com testes automatizados. A aplicação consome dados da **API oficial do Pokémon** e possui **internacionalização (i18n)** com suporte a **português**, **inglês** e **espanhol**.
+ Processo seletivo, Mainô.
 
 ---
 
