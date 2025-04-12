@@ -1,5 +1,27 @@
-# Vue 3 + Vite
+# 📘 Pokédex Vue
+ Processo seletivo, Mainô.
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+---
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## 🚀 Tecnologias Utilizadas
+
+- **Vue.js**: Framework progressivo para construção de interfaces reativas.
+- **Vuex**: Gerenciamento centralizado de estado.
+- **Sass**: Pré-processador CSS para estilos mais poderosos e escaláveis.
+- **Vitest**: Framework de testes rápido, inspirado no Jest.
+- **Vue I18n**: Plugin para internacionalização.
+- **PokéAPI**: Fonte de dados oficial dos Pokémons.
+
+---
+
+## 🌐 Internacionalização
+
+A aplicação detecta o idioma do navegador do usuário automaticamente e permite alternar entre os seguintes idiomas:
+
+- 🇧🇷 Português
+- 🇺🇸 Inglês
+- 🇪🇸 Espanhol
+
+---
+
+
