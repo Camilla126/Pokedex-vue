@@ -2,6 +2,7 @@
  Processo seletivo, Mainô.
 
 ---
+-**O som dos primeiros 9 pokémon são exibido a passar o mouse em cima do pokémon.**
 
 ## 🚀 Tecnologias Utilizadas
 
