@@ -3,12 +3,21 @@
     <div class="pokemon-card__inner">
       <div class="pokemon-card__header">
         <div>
-          <h2 class="pokemon-card__name">{{ formattedName }}</h2>
+          <h2 class="pokemon-card__name">{{ formattedName }}   <span class="pokemon-card__id">#{{ pokemon.id.toString().padStart(3, '0') }}</span></h2>
           <p v-if="evolutionStage" class="pokemon-card__evolution">
             {{ $t('pokemon.card.stage') }}: {{ evolutionStage }}
           </p>
         </div>
-        <span class="pokemon-card__id">#{{ pokemon.id.toString().padStart(3, '0') }}</span>
+        <div class="pokemon-card__types">
+        <span
+           v-for="(type, index) in pokemon.types"
+           :key="index"
+           :class="['pokemon-type', `pokemon-type--${type.type.name}`]"
+        >
+          {{ $t(`types.${type.type.name}`) }}
+        </span>
+      </div>
+  
       </div>
       
       <div class="pokemon-card__image">
@@ -51,15 +60,7 @@
         </div>
       </div>
         
-      <div class="pokemon-card__types">
-        <span
-           v-for="(type, index) in pokemon.types"
-           :key="index"
-           :class="['pokemon-type', `pokemon-type--${type.type.name}`]"
-        >
-          {{ $t(`types.${type.type.name}`) }}
-        </span>
-      </div>
+    
     </div>
   </div>
 </template>
