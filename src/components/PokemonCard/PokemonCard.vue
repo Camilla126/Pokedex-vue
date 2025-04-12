@@ -1,125 +1,168 @@
 <template>
-  <div class="pokemon-card" :class="`pokemon-card--${primaryType}`">
+  <div
+    class="pokemon-card"
+    :class="`pokemon-card--${primaryType}`"
+    @mouseenter="toggleSound"
+    @mouseleave="stopSound"
+  >
     <div class="pokemon-card__inner">
       <div class="pokemon-card__header">
         <div>
-          <h2 class="pokemon-card__name">{{ formattedName }}   <span class="pokemon-card__id">#{{ pokemon.id.toString().padStart(3, '0') }}</span></h2>
+          <h2 class="pokemon-card__name">
+            {{ formattedName }}
+
+            <span class="pokemon-card__id"
+              >#{{ pokemon.id.toString().padStart(3, "0") }}</span
+            >
+          </h2>
+
           <p v-if="evolutionStage" class="pokemon-card__evolution">
-            {{ $t('pokemon.card.stage') }}: {{ evolutionStage }}
+            {{ $t("pokemon.card.stage") }}: {{ evolutionStage }}
           </p>
         </div>
+
         <div class="pokemon-card__types">
-        <span
-           v-for="(type, index) in pokemon.types"
-           :key="index"
-           :class="['pokemon-type', `pokemon-type--${type.type.name}`]"
-        >
-          {{ $t(`types.${type.type.name}`) }}
-        </span>
+          <span
+            v-for="(type, index) in pokemon.types"
+            :key="index"
+            :class="['pokemon-type', `pokemon-type--${type.type.name}`]"
+          >
+            {{ $t(`types.${type.type.name}`) }}
+          </span>
+        </div>
       </div>
-  
-      </div>
-      
+
       <div class="pokemon-card__image">
         <section>
           <img
-             :src="pokemon.image"
-             :alt="pokemon.name"
-             loading="lazy"
-             :style="{ height: `${dynamicHeight}px` }"
+            :src="pokemon.image"
+            :alt="pokemon.name"
+            loading="lazy"
+            :style="{ height: `${dynamicHeight}px` }"
           />
         </section>
       </div>
-      
+
       <p v-if="preEvolutionImage" class="pokemon-card__pre-evo">
-        {{ $t('pokemon.card.preEvolution') }}:
-        <img :src="preEvolutionImage" alt="Pré-evolução" class="pokemon-card__pre-evo-img" />
+        {{ $t("pokemon.card.preEvolution") }}:
+
+        <img
+          :src="preEvolutionImage"
+          alt="Pré-evolução"
+          class="pokemon-card__pre-evo-img"
+        />
       </p>
-      
-      <p v-if="localizedDescription" class="pokemon-card__description">{{ localizedDescription }}</p>
-      <p v-if="ability" class="pokemon-card__ability">{{ $t('pokemon.card.ability') }}: {{ formatAbilityName(ability) }}</p>
+
+      <p v-if="localizedDescription" class="pokemon-card__description">
+        {{ localizedDescription }}
+      </p>
+
+      <p v-if="ability" class="pokemon-card__ability">
+        {{ $t("pokemon.card.ability") }}: {{ formatAbilityName(ability) }}
+      </p>
+
       <p v-if="firstTwoMoves.length" class="pokemon-card__moves">
-        {{ $t('pokemon.card.attacks') }}: {{ formatMoveNames(firstTwoMoves).join(', ') }}
+        {{ $t("pokemon.card.attacks") }}:
+        {{ formatMoveNames(firstTwoMoves).join(", ") }}
       </p>
-      
+
       <div class="pokemon-card__stats">
         <div
-           v-for="stat in pokemon.stats"
-           :key="stat.stat.name"
-           class="pokemon-card__stat"
+          v-for="stat in pokemon.stats"
+          :key="stat.stat.name"
+          class="pokemon-card__stat"
         >
           <span>{{ $t(`pokemon.card.stats.${stat.stat.name}`) }}</span>
+
           <div class="pokemon-card__stat-bar">
             <div
-               class="pokemon-card__stat-fill"
-               :style="{ width: stat.base_stat + '%' }"
+              class="pokemon-card__stat-fill"
+              :style="{ width: stat.base_stat + '%' }"
             >
               {{ stat.base_stat }}
             </div>
           </div>
         </div>
       </div>
-        
-    
     </div>
+
+    <audio
+      ref="audioElement"
+      :src="`/pokemonSounds/${pokemon.name.toLowerCase()}.mp3`"
+      preload="auto"
+      @ended="isSoundPlaying = false"
+    ></audio>
   </div>
 </template>
 
 <script>
-import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
+import { computed, ref, onBeforeUnmount } from "vue";
+
+import { useI18n } from "vue-i18n";
 
 export default {
-  name: 'PokemonCard',
+  name: "PokemonCard",
+
   props: {
     pokemon: {
       type: Object,
-      required: true
-    }
+
+      required: true,
+    },
   },
+
   setup(props) {
     const { t, locale } = useI18n();
 
+    const audioElement = ref(null);
+
+    const isSoundPlaying = ref(false);
+
     const formattedName = computed(() => {
-      return props.pokemon.name.charAt(0).toUpperCase() + props.pokemon.name.slice(1);
+      return (
+        props.pokemon.name.charAt(0).toUpperCase() + props.pokemon.name.slice(1)
+      );
     });
 
     const primaryType = computed(() => {
-      return props.pokemon.types[0]?.type?.name || 'normal';
+      return props.pokemon.types[0]?.type?.name || "normal";
     });
 
     const localizedDescription = computed(() => {
       const currentLangEntry = props.pokemon.species?.flavor_text_entries?.find(
-        entry => entry.language.name === locale.value
+        (entry) => entry.language.name === locale.value
       );
 
       const englishEntry = props.pokemon.species?.flavor_text_entries?.find(
-        entry => entry.language.name === 'en'
+        (entry) => entry.language.name === "en"
       );
-      
+
       const entry = currentLangEntry || englishEntry;
-      return entry?.flavor_text?.replace(/\f/g, ' ') || '';
+
+      return entry?.flavor_text?.replace(/\f/g, " ") || "";
     });
 
     const evolutionStage = computed(() => {
-      return props.pokemon.evolutionStage || '';
+      return props.pokemon.evolutionStage || "";
     });
 
     const preEvolutionImage = computed(() => {
-      return props.pokemon.preEvolution?.image || '';
+      return props.pokemon.preEvolution?.image || "";
     });
 
     const ability = computed(() => {
-      return props.pokemon.abilities?.[0]?.ability?.name || '';
+      return props.pokemon.abilities?.[0]?.ability?.name || "";
     });
 
     const firstTwoMoves = computed(() => {
-      return props.pokemon.moves?.slice(0, 2).map(move => move.move.name) || [];
+      return (
+        props.pokemon.moves?.slice(0, 2).map((move) => move.move.name) || []
+      );
     });
 
     const dynamicHeight = computed(() => {
       const height = props.pokemon.height || 0;
-      
+
       if (height <= 9) {
         return 90;
       } else if (height <= 15) {
@@ -130,14 +173,64 @@ export default {
     });
 
     const formatAbilityName = (name) => {
-      return name.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+      return name
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
     };
 
     const formatMoveNames = (moves) => {
-      return moves.map(name => name.split('-').map(
-        word => word.charAt(0).toUpperCase() + word.slice(1)
-      ).join(' '));
+      return moves.map((name) =>
+        name
+          .split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ")
+      );
     };
+
+    const toggleSound = () => {
+      if (!audioElement.value) return;
+
+      if (isSoundPlaying.value) {
+        audioElement.value.pause();
+
+        audioElement.value.currentTime = 0;
+
+        isSoundPlaying.value = false;
+      } else {
+        audioElement.value.currentTime = 0;
+
+        audioElement.value
+          .play()
+
+          .then(() => {
+            isSoundPlaying.value = true;
+          })
+
+          .catch((error) => {
+            console.warn(
+              `Não foi possível tocar o som do ${props.pokemon.name}:`,
+              error
+            );
+
+            isSoundPlaying.value = false;
+          });
+      }
+    };
+
+    const stopSound = () => {
+      if (!audioElement.value || !isSoundPlaying.value) return;
+
+      audioElement.value.pause();
+      audioElement.value.currentTime = 0;
+      isSoundPlaying.value = false;
+    };
+
+    onBeforeUnmount(() => {
+      if (audioElement.value && !audioElement.value.paused) {
+        audioElement.value.pause();
+      }
+    });
 
     return {
       formattedName,
@@ -149,12 +242,16 @@ export default {
       firstTwoMoves,
       dynamicHeight,
       formatAbilityName,
-      formatMoveNames
+      formatMoveNames,
+      audioElement,
+      isSoundPlaying,
+      toggleSound,
+      stopSound,
     };
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@use './styles.modules.scss' as *;
+@use "./styles.modules.scss" as *;
 </style>
